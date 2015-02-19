@@ -1,0 +1,17 @@
+### Windows ###
+Thumbs.db
+
+### OSX ###
+.DS_Store
+
+### WebStorm/PhpStorm ###
+/.idea/*
+!/.idea/codeStyleSettings.xml
+
+### Node ###
+/node_modules
+
+### Bundler ###
+/.bundle/
+/vendor/bundle
+Gemfile.lock
