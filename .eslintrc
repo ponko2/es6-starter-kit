@@ -4,6 +4,9 @@
     "node": true
   },
   "rules": {
+    "accessor-pairs": [2, {
+      "setWithoutGet": true
+    }],
     "complexity": [2, 4],
     "dot-notation": [2, {
       "allowPattern": "^[a-z]+(_[a-z]+)+$"
@@ -22,6 +25,9 @@
     "indent": [2, 2],
     "comma-style": 2,
     "consistent-this": 2,
+    "lines-around-comment": [2, {
+      "beforeBlockComment": true
+    }],
     "linebreak-style": [2, "unix"],
     "max-nested-callbacks": [2, 4],
     "newline-after-var": [2, "always"],
@@ -30,6 +36,7 @@
     "no-multiple-empty-lines": [2, {"max": 2}],
     "no-nested-ternary": 2,
     "no-unneeded-ternary": 2,
+    "object-curly-spacing": [2, "never"],
     "one-var": [2, {
       "uninitialized": "always",
       "initialized": "never"
