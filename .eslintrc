@@ -24,6 +24,7 @@
     "wrap-iife": 2,
     "indent": [2, 2],
     "comma-style": 2,
+    "computed-property-spacing": [2, "never"],
     "consistent-this": 2,
     "lines-around-comment": [2, {
       "beforeBlockComment": true
@@ -50,10 +51,9 @@
       "anonymous": "always",
       "named": "never"
     }],
-    "space-in-brackets": 2,
     "space-in-parens": 2,
     "space-unary-ops": 2,
-    "spaced-line-comment": 2,
+    "spaced-comment": [2, "always"],
     "max-depth": [1, 2],
     "max-len": [2, 100, 4],
     "max-params": [1, 4],

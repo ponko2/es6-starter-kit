@@ -9,6 +9,7 @@
   "rules": {
     "generator-star-spacing": [2, "before"],
     "no-var": 2,
-    "object-shorthand": [2, "always"]
+    "object-shorthand": [2, "always"],
+    "prefer-const": 2
   }
 }
