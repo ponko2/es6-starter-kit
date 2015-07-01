@@ -7,7 +7,9 @@
     "spread": true
   },
   "rules": {
+    "constructor-super": 2,
     "generator-star-spacing": [2, "before"],
+    "no-this-before-super": 2,
     "no-var": 2,
     "object-shorthand": [2, "always"],
     "prefer-const": 2

@@ -4,6 +4,7 @@
     "node": true
   },
   "rules": {
+    "no-unexpected-multiline": 2,
     "accessor-pairs": [2, {
       "setWithoutGet": true
     }],
@@ -22,10 +23,12 @@
     "no-param-reassign": 2,
     "no-throw-literal": 2,
     "wrap-iife": 2,
-    "indent": [2, 2],
+    "array-bracket-spacing": [2, "never"],
+    "brace-style": [2, "1tbs", {"allowSingleLine": true}],
     "comma-style": 2,
     "computed-property-spacing": [2, "never"],
     "consistent-this": 2,
+    "indent": [2, 2],
     "lines-around-comment": [2, {
       "beforeBlockComment": true
     }],
