@@ -4,6 +4,11 @@
     "node": true
   },
   "rules": {
+    "valid-jsdoc": [2, {
+      "requireReturn": false,
+      "requireParamDescription": false,
+      "requireReturnDescription": false
+    }],
     "no-unexpected-multiline": 2,
     "accessor-pairs": [2, {
       "setWithoutGet": true
