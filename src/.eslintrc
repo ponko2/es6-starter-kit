@@ -3,8 +3,7 @@
     "es6": true
   },
   "ecmaFeatures": {
-    "modules": true,
-    "spread": true
+    "modules": true
   },
   "rules": {
     "arrow-parens": [2, "always"],
