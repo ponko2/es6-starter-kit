@@ -32,6 +32,7 @@
     "wrap-iife": 2,
     "callback-return": [2, ["callback", "cb", "next"]],
     "array-bracket-spacing": [2, "never"],
+    "block-spacing": [2, "always"],
     "brace-style": [2, "1tbs", {"allowSingleLine": true}],
     "comma-style": 2,
     "computed-property-spacing": [2, "never"],
