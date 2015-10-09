@@ -31,6 +31,7 @@
     "no-throw-literal": 2,
     "wrap-iife": 2,
     "callback-return": [2, ["callback", "cb", "next"]],
+    "global-require": 2,
     "array-bracket-spacing": [2, "never"],
     "block-spacing": [2, "always"],
     "brace-style": [2, "1tbs", {"allowSingleLine": true}],
@@ -38,6 +39,7 @@
     "computed-property-spacing": [2, "never"],
     "consistent-this": 2,
     "indent": [2, 2, {"SwitchCase": 1}],
+    "jsx-quotes": [2, "prefer-double"],
     "lines-around-comment": [2, {
       "beforeBlockComment": true
     }],
@@ -48,6 +50,7 @@
     "no-lonely-if": 2,
     "no-multiple-empty-lines": [2, {"max": 2}],
     "no-nested-ternary": 2,
+    "no-restricted-syntax": [2, "WithStatement"],
     "no-unneeded-ternary": 2,
     "object-curly-spacing": [2, "never"],
     "one-var": [2, {
@@ -57,8 +60,10 @@
     "operator-linebreak": [2, "after"],
     "padded-blocks": [2, "never"],
     "quotes": [2, "single", "avoid-escape"],
+    "require-jsdoc": 2,
     "semi": [2, "always"],
     "space-after-keywords": 2,
+    "space-before-keywords": [2, "always"],
     "space-before-blocks": 2,
     "space-before-function-paren": [2, {
       "anonymous": "always",
