@@ -1,36 +1,36 @@
 'use strict';
 
-var argv        = require('yargs').argv;
-var path        = require('path');
-var gulp        = require('gulp');
-var $           = require('gulp-load-plugins')();
-var del         = require('del');
-var runSequence = require('run-sequence');
-var source      = require('vinyl-source-stream');
-var buffer      = require('vinyl-buffer');
-var watchify    = require('watchify');
-var browserify  = require('browserify');
-var browserSync = require('browser-sync');
-var reload      = browserSync.reload;
+const argv        = require('yargs').argv;
+const path        = require('path');
+const gulp        = require('gulp');
+const $           = require('gulp-load-plugins')();
+const del         = require('del');
+const runSequence = require('run-sequence');
+const source      = require('vinyl-source-stream');
+const buffer      = require('vinyl-buffer');
+const watchify    = require('watchify');
+const browserify  = require('browserify');
+const browserSync = require('browser-sync');
+const reload      = browserSync.reload;
 
 
 // PATH
-var sourceDir        = './src';
-var publicDir        = './public';
-var imagesSourceDir  = path.join(sourceDir, 'images');
-var stylesSourceDir  = path.join(sourceDir, 'styles');
-var scriptsSourceDir = path.join(sourceDir, 'scripts');
-var fontsOutputDir   = path.join(publicDir, 'fonts');
-var stylesOutputDir  = path.join(publicDir, 'styles');
-var scriptsOutputDir = path.join(publicDir, 'scripts');
+const sourceDir        = './src';
+const publicDir        = './public';
+const imagesSourceDir  = path.join(sourceDir, 'images');
+const stylesSourceDir  = path.join(sourceDir, 'styles');
+const scriptsSourceDir = path.join(sourceDir, 'scripts');
+const fontsOutputDir   = path.join(publicDir, 'fonts');
+const stylesOutputDir  = path.join(publicDir, 'styles');
+const scriptsOutputDir = path.join(publicDir, 'scripts');
 
-var src = {
+const src = {
   fonts: 'node_modules/bootstrap-sass/assets/fonts/**',
   scripts: path.join(scriptsSourceDir, '**/*.{js,jsx}'),
   styles: path.join(stylesSourceDir, '**/*.{sass,scss}')
 };
 
-var watch = {
+const watch = {
   styles: path.join(stylesSourceDir, '**/*.scss'),
   images: path.join(imagesSourceDir, '**/*'),
   views: path.join(publicDir, '**/*.html'),
@@ -39,10 +39,10 @@ var watch = {
 
 
 // Browserify
-var bundleScript  = 'bundle.js';
-var scriptEntries = [path.resolve(path.join(scriptsSourceDir, 'app.js'))];
+const bundleScript  = 'bundle.js';
+const scriptEntries = [path.resolve(path.join(scriptsSourceDir, 'app.js'))];
 
-var bundler = browserify({
+const bundler = browserify({
   entries: scriptEntries,
   extensions: ['.js', '.jsx'],
   transform: ['babelify'],
@@ -54,7 +54,7 @@ var bundler = browserify({
 
 
 // Autoprefixer
-var AUTOPREFIXER_BROWSERS = [
+const AUTOPREFIXER_BROWSERS = [
   'ie >= 10',
   'ie_mob >= 10',
   'ff >= 30',
@@ -68,7 +68,7 @@ var AUTOPREFIXER_BROWSERS = [
 
 
 // Error Notification
-var onError = function (err) {
+const onError = (err) => {
   $.notify.onError({
     title: 'Compile Error',
     message: '<%= error.message %>'
@@ -84,12 +84,12 @@ gulp.task('clean', del.bind(null, [
   path.join(fontsOutputDir, '*')
 ]));
 
-gulp.task('copy:fonts', function () {
+gulp.task('copy:fonts', () => {
   return gulp.src(src.fonts)
     .pipe(gulp.dest(fontsOutputDir));
 });
 
-gulp.task('build:scripts', function () {
+gulp.task('build:scripts', () => {
   return bundler
     .bundle()
     .on('error', onError)
@@ -101,7 +101,7 @@ gulp.task('build:scripts', function () {
     .pipe(gulp.dest(scriptsOutputDir));
 });
 
-gulp.task('build:styles', function () {
+gulp.task('build:styles', () => {
   return gulp.src(src.styles)
     .pipe($.if(!argv.production, $.sourcemaps.init()))
     .pipe($.sass())
@@ -112,11 +112,11 @@ gulp.task('build:styles', function () {
     .pipe(gulp.dest(stylesOutputDir));
 });
 
-gulp.task('watchify', function () {
-  var watcher = watchify(bundler);
+gulp.task('watchify', () => {
+  const watcher = watchify(bundler);
 
   return watcher
-    .on('update', function () {
+    .on('update', () => {
       watcher
         .bundle()
         .on('error', onError)
@@ -135,19 +135,19 @@ gulp.task('watchify', function () {
     .pipe(gulp.dest(scriptsOutputDir));
 });
 
-gulp.task('watch:styles', function () {
+gulp.task('watch:styles', () => {
   gulp.watch(watch.styles, ['build:styles', reload]);
 });
 
-gulp.task('watch:images', function () {
+gulp.task('watch:images', () => {
   gulp.watch(watch.images, reload);
 });
 
-gulp.task('watch:views', function () {
+gulp.task('watch:views', () => {
   gulp.watch(watch.views, reload);
 });
 
-gulp.task('serve', function () {
+gulp.task('serve', () => {
   browserSync({
     notify: false,
     server: {
@@ -156,7 +156,7 @@ gulp.task('serve', function () {
   });
 });
 
-gulp.task('watch', function () {
+gulp.task('watch', () => {
   runSequence(
     'clean',
     ['copy:fonts', 'build:styles', 'watchify'],
@@ -165,7 +165,7 @@ gulp.task('watch', function () {
   );
 });
 
-gulp.task('build', function (cb) {
+gulp.task('build', (cb) => {
   runSequence('clean', [
     'copy:fonts',
     'build:styles',
@@ -173,14 +173,14 @@ gulp.task('build', function (cb) {
   ], cb);
 });
 
-gulp.task('lint:eslint', function () {
+gulp.task('lint:eslint', () => {
   return gulp.src(src.scripts)
     .pipe($.eslint())
     .pipe($.eslint.format())
     .pipe($.eslint.failAfterError());
 });
 
-gulp.task('lint:scss-lint', function () {
+gulp.task('lint:scss-lint', () => {
   return gulp.src(src.styles)
     .pipe($.scssLint({
       customReport: $.scssLintStylish,
@@ -191,6 +191,6 @@ gulp.task('lint:scss-lint', function () {
 
 gulp.task('lint', ['lint:eslint', 'lint:scss-lint']);
 
-gulp.task('default', function () {
+gulp.task('default', () => {
   runSequence('lint', 'build');
 });
