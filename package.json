@@ -10,6 +10,7 @@
     "browserify": "^11.2.0",
     "del": "^2.0.2",
     "eslint": "latest",
+    "eslint-config-ponko2": "^1.0.0",
     "espower-babel": "^3.3.0",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.0.2",
