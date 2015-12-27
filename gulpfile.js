@@ -1,5 +1,3 @@
-'use strict';
-
 const argv        = require('yargs').argv;
 const path        = require('path');
 const gulp        = require('gulp');

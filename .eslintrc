@@ -3,5 +3,8 @@
     "browser": true,
     "node": true
   },
+  "ecmaFeatures": {
+    "modules": true
+  },
   "extends": "ponko2"
 }

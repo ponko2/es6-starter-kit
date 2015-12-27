@@ -1,5 +1,3 @@
-'use strict';
-
 // Karma configuration
 
 module.exports = function (config) {
