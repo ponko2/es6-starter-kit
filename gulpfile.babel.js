@@ -9,6 +9,9 @@ import buffer          from 'vinyl-buffer';
 import watchify        from 'watchify';
 import browserify      from 'browserify';
 import browserSync     from 'browser-sync';
+import stylelint       from 'stylelint';
+import scss            from 'postcss-scss';
+import reporter        from 'postcss-reporter';
 
 const $      = gulpLoadPlugins();
 const reload = browserSync.reload;
@@ -180,16 +183,20 @@ gulp.task('lint:eslint', () => {
     .pipe($.eslint.failAfterError());
 });
 
-gulp.task('lint:scss-lint', () => {
+gulp.task('lint:stylelint', () => {
   return gulp.src(src.styles)
-    .pipe($.scssLint({
-      customReport: $.scssLintStylish,
-      bundleExec: true
-    }))
-    .pipe($.scssLint.failReporter());
+    .pipe($.postcss([
+      stylelint({}),
+      reporter({
+        clearMessages: true,
+        throwError: true
+      })
+    ], {
+      syntax: scss
+    }));
 });
 
-gulp.task('lint', ['lint:eslint', 'lint:scss-lint']);
+gulp.task('lint', ['lint:eslint', 'lint:stylelint']);
 
 gulp.task('default', () => {
   runSequence('lint', 'build');

@@ -10,8 +10,4 @@ Thumbs.db
 
 ### Node ###
 /node_modules
-
-### Bundler ###
-/.bundle/
-/vendor/bundle
-Gemfile.lock
+npm-debug.log
