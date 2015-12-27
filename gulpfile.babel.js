@@ -1,15 +1,17 @@
-const argv        = require('yargs').argv;
-const path        = require('path');
-const gulp        = require('gulp');
-const $           = require('gulp-load-plugins')();
-const del         = require('del');
-const runSequence = require('run-sequence');
-const source      = require('vinyl-source-stream');
-const buffer      = require('vinyl-buffer');
-const watchify    = require('watchify');
-const browserify  = require('browserify');
-const browserSync = require('browser-sync');
-const reload      = browserSync.reload;
+import {argv}          from 'yargs';
+import path            from 'path';
+import gulp            from 'gulp';
+import gulpLoadPlugins from 'gulp-load-plugins';
+import del             from 'del';
+import runSequence     from 'run-sequence';
+import source          from 'vinyl-source-stream';
+import buffer          from 'vinyl-buffer';
+import watchify        from 'watchify';
+import browserify      from 'browserify';
+import browserSync     from 'browser-sync';
+
+const $      = gulpLoadPlugins();
+const reload = browserSync.reload;
 
 
 // PATH
