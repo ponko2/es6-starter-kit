@@ -71,7 +71,7 @@ const AUTOPREFIXER_BROWSERS = [
 
 
 // Error Notification
-const onError = (err) => {
+const onError = err => {
   $.notify.onError({
     title: 'Compile Error',
     message: '<%= error.message %>'
@@ -87,13 +87,13 @@ gulp.task('clean', del.bind(null, [
   path.join(fontsOutputDir, '*')
 ]));
 
-gulp.task('copy:fonts', () => {
-  return gulp.src(src.fonts)
-    .pipe(gulp.dest(fontsOutputDir));
-});
+gulp.task('copy:fonts', () =>
+  gulp.src(src.fonts)
+    .pipe(gulp.dest(fontsOutputDir))
+);
 
-gulp.task('build:scripts', () => {
-  return bundler
+gulp.task('build:scripts', () =>
+  bundler
     .bundle()
     .on('error', onError)
     .pipe(source(bundleScript))
@@ -101,19 +101,19 @@ gulp.task('build:scripts', () => {
     .pipe($.if(!argv.production, $.sourcemaps.init({loadMaps: true})))
     .pipe($.if(!argv.production, $.sourcemaps.write('./')))
     .pipe($.if(argv.production, $.uglify()))
-    .pipe(gulp.dest(scriptsOutputDir));
-});
+    .pipe(gulp.dest(scriptsOutputDir))
+);
 
-gulp.task('build:styles', () => {
-  return gulp.src(src.styles)
+gulp.task('build:styles', () =>
+  gulp.src(src.styles)
     .pipe($.if(!argv.production, $.sourcemaps.init()))
     .pipe($.sass())
     .on('error', onError)
     .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
     .pipe($.if(!argv.production, $.sourcemaps.write('./')))
     .pipe($.if(argv.production, $.csso()))
-    .pipe(gulp.dest(stylesOutputDir));
-});
+    .pipe(gulp.dest(stylesOutputDir))
+);
 
 gulp.task('watchify', () => {
   const watcher = watchify(bundler);
@@ -168,7 +168,7 @@ gulp.task('watch', () => {
   );
 });
 
-gulp.task('build', (cb) => {
+gulp.task('build', cb => {
   runSequence('clean', [
     'copy:fonts',
     'build:styles',
@@ -176,15 +176,15 @@ gulp.task('build', (cb) => {
   ], cb);
 });
 
-gulp.task('lint:eslint', () => {
-  return gulp.src(src.scripts)
+gulp.task('lint:eslint', () =>
+  gulp.src(src.scripts)
     .pipe($.eslint())
     .pipe($.eslint.format())
-    .pipe($.eslint.failAfterError());
-});
+    .pipe($.eslint.failAfterError())
+);
 
-gulp.task('lint:stylelint', () => {
-  return gulp.src(src.styles)
+gulp.task('lint:stylelint', () =>
+  gulp.src(src.styles)
     .pipe($.postcss([
       stylelint({}),
       reporter({
@@ -193,8 +193,8 @@ gulp.task('lint:stylelint', () => {
       })
     ], {
       syntax: scss
-    }));
-});
+    }))
+);
 
 gulp.task('lint', ['lint:eslint', 'lint:stylelint']);
 
